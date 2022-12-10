@@ -9,5 +9,6 @@ import cat.itacademy.barcelonactiva.samayoa.sonia.s04.t02.n01.model.domain.Fruit
 public interface FruitaRepo extends JpaRepository<Fruita, Integer> {
 	
 	List<Fruita> findBynom(String nom);
+	List<Fruita> findById(long id);
 
 }

@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -23,48 +24,35 @@ public class FruitaCrontroller {
 	FruitaService fruitaService;
 	
 	@GetMapping("/add")
-	public Fruita addFruita () {
+	public ResponseEntity<Fruita> addFruita (@RequestBody Fruita fruita) {
 		
-		System.out.println("Afegir fruita:");
-		Fruita fruita = fruitaService.addFruita();
-		
-		return fruita;
+		return fruitaService.addFruita(fruita);
 	
 	}
 	
 	@GetMapping("/update")
-	public Fruita updateFruita(){
+	public String updateFruita(Fruita fruitaUpdate){
 		
-		return fruitaService.updateFruita();
+		return fruitaService.updateFruita(fruitaUpdate);
 	}
 	
 	@GetMapping("/delete/{id}")
-	public void deleteFruita(@PathVariable("id")int id) {
+	public void deleteFruita(@PathVariable("id")long id) {
 		
 		fruitaService.deleteFruita(id);
 		
 	}
 	
 	@GetMapping("/getOne/{id}")
-	public Fruita getOneFruita(@PathVariable("id")int id){
+	public ResponseEntity<List<Fruita>> getOneFruita(@PathVariable("id")long id){
 		
 		return fruitaService.getOneFruita(id);
 	}
 	
 	
 	@GetMapping("/getAll")
-	public ResponseEntity<String> getAllFruita(){
+	public ResponseEntity<List<Fruita>> getAllFruita(){
 		
-		try {
-			List<Fruita> fruites = fruitaService.getAllFruita();
-			if (fruites!=null) {
-				return ResponseEntity.status(HttpStatus.OK).body("esta es la lista de Fruites");
-			}else{
-				return ResponseEntity.status(HttpStatus.NO_CONTENT).body("no hay ningun producto");
-				}
-			}
-		catch (Exception ex) {
-			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-		}
+		return fruitaService.getAllFruita();
 	}
 }

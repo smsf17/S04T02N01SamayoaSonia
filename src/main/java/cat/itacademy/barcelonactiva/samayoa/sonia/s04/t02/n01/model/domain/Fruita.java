@@ -25,6 +25,10 @@ public class Fruita {
 		this.nom = nom;
 		this.quilos = quilos;
 	}
+	
+	public Fruita() {
+		
+	}
 
 	public long getId() {
 		return id;

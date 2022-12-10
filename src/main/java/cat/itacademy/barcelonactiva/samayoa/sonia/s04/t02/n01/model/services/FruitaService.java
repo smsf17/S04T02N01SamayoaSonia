@@ -2,18 +2,20 @@ package cat.itacademy.barcelonactiva.samayoa.sonia.s04.t02.n01.model.services;
 
 import java.util.List;
 
+import org.springframework.http.ResponseEntity;
+
 import cat.itacademy.barcelonactiva.samayoa.sonia.s04.t02.n01.model.domain.Fruita;
 
 public interface FruitaService {
 
-	public Fruita addFruita ();
+	public ResponseEntity<Fruita> addFruita(Fruita fruita);
 	
-	public Fruita updateFruita ();
+	public String updateFruita(Fruita fruitaNew);
 	
-	public String deleteFruita (int id);
+	public String deleteFruita(long id);
 	
-	public Fruita getOneFruita (int id);
+	public ResponseEntity<List<Fruita>> getOneFruita(long id);
 	
-	public List<Fruita> getAllFruita ();
-
+	public ResponseEntity<List<Fruita>> getAllFruita();
+	
 }
